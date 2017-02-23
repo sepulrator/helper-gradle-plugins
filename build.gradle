@@ -1,0 +1,15 @@
+group 'org.sepulrator.gradle'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile gradleApi()
+    compile localGroovy()
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}

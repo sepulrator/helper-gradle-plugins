@@ -30,7 +30,7 @@ test {
 
 pluginBundle {
     website = 'https://github.com/sepulrator'
-    vcsUrl = 'https://github.com/sepulrator/helper-gradle-plugins'
+    vcsUrl = 'https://github.com/sepulrator/helper-gradle-plugins/tree/master/packager-plugin'
     description = 'Plugin for Java Source Package Manager'
 
     plugins {

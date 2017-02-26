@@ -57,7 +57,7 @@ class PackagerPluginTest extends Specification {
 
         def initTask = result.task(':init')
         initTask.outcome == SUCCESS
-        Thread.sleep(20000);
+        //Thread.sleep(20000);
         new File("${testProjectDir.root}/src/main/groovy").exists()
         new File("${testProjectDir.root}/src/test/groovy").exists()
 

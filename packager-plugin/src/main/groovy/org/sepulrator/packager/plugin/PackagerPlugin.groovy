@@ -2,18 +2,17 @@ package org.sepulrator.packager.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.sepulrator.packager.plugin.tasks.InitSourceFolders
+import org.sepulrator.packager.plugin.tasks.GeneratePackageStructure
+import org.sepulrator.packager.plugin.tasks.InitPackageStructure
+import org.sepulrator.packager.plugin.tasks.RetrievePackageStructure
 
 /**
  * Created by osman on 24.2.2017.
  */
 class PackagerPlugin implements Plugin<Project> {
 
-    static final String EXTENSION_NAME = "packager"
-
     @Override
     void apply(Project project) {
-        System.out.println("asd:apply")
         if (project.plugins.hasPlugin(PackagerPlugin.class)) {
             return
         }
@@ -21,15 +20,15 @@ class PackagerPlugin implements Plugin<Project> {
         //project.plugins.apply(PackageManagerPlugin)
         addTasks(project)
 
-        String workingDir = System.getProperty("user.dir");
+        /*String workingDir = System.getProperty("user.dir");
         System.out.println("Current working directory : " + workingDir);
         System.out.println("Project directory : " + project.projectDir);
-        if (1==1)
-            System.out.println("sadasd")
-        System.out.println(PackagerPlugin.class.getProtectionDomain().getCodeSource().getLocation());
+        */
+
+        //System.out.println(PackagerPlugin.class.getProtectionDomain().getCodeSource().getLocation());
 
         // add 'sourceFolders' DSL extension
-        project.extensions.create(EXTENSION_NAME,PackagerPluginExtension)
+        project.extensions.create(ProjectConstants.EXTENSION_NAME,PackagerPluginExtension)
 
         // add new tasks for creating/cleaning the auto-value sources dir
         //project.task(type: CleanAutoValueSourcesDir, "cleanAutoValueSourcesDir")
@@ -64,6 +63,11 @@ class PackagerPlugin implements Plugin<Project> {
     }
 
     private void addTasks(Project project) {
-        project.task(type: InitSourceFolders, "init")
+        project.task(type: InitPackageStructure, "init")
+        project.task(type: RetrievePackageStructure, "retrieve")
+        project.task(type: GeneratePackageStructure, "generate")
+        project.tasks.retrieve.dependsOn project.tasks.init
+        project.tasks.generate.dependsOn project.tasks.init
+
     }
 }

@@ -19,7 +19,7 @@ class PackagerPluginTest extends Specification {
         println buildFile.absolutePath
     }
 
-    def 'produces class files when compiling Java source code'() {
+    def 'create specified directories and package index file'() {
         given:
         //<< "apply plugçin: 'java'"
         //org.sepulrator.gradle.packager-plugin' version '1.0.2'
@@ -53,13 +53,30 @@ class PackagerPluginTest extends Specification {
                 .build()
 
         then:
-        println result.output.readLines().toString()
+        //println result.output.readLines().toString()
 
         def initTask = result.task(':init')
         initTask.outcome == SUCCESS
         Thread.sleep(20000);
         new File("${testProjectDir.root}/src/main/groovy").exists()
         new File("${testProjectDir.root}/src/test/groovy").exists()
+
+        when:
+        result = GradleRunner.create()
+                .withDebug(true)
+                .withProjectDir(testProjectDir.root)
+                .withArguments('retrieve','--info')
+                .withPluginClasspath()
+                .build()
+
+        then:
+        //println result.output.readLines().toString()
+
+        def retrieveTask = result.task(':retrieve')
+        retrieveTask.outcome == SUCCESS
+        //Thread.sleep(20000);
+        new File("${testProjectDir.root}/src/main/groovy/package.index").exists()
+        new File("${testProjectDir.root}/src/test/groovy/package.index").exists()
 
 
 

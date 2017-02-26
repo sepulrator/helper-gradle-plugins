@@ -39,14 +39,14 @@ pluginBundle {
             displayName = 'Package Manager Plugin'
             description = 'Plugin for Java Source Package Manager'
             tags = ['package manager','source package']
-            version = '1.0.2'
+            version = '1.0.0'
         }
     }
 
     mavenCoordinates {
         groupId = "org.sepulrator.gradle"
         artifactId = "packager-plugin"
-        version = "1.0.2"
+        version = "1.0.0"
     }
 
 }

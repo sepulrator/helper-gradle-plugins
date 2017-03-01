@@ -17,49 +17,11 @@ class PackagerPlugin implements Plugin<Project> {
             return
         }
 
-        //project.plugins.apply(PackageManagerPlugin)
+        //add tasks to the project
         addTasks(project)
-
-        /*String workingDir = System.getProperty("user.dir");
-        System.out.println("Current working directory : " + workingDir);
-        System.out.println("Project directory : " + project.projectDir);
-        */
-
-        //System.out.println(PackagerPlugin.class.getProtectionDomain().getCodeSource().getLocation());
 
         // add 'sourceFolders' DSL extension
         project.extensions.create(ProjectConstants.EXTENSION_NAME,PackagerPluginExtension)
-
-        // add new tasks for creating/cleaning the auto-value sources dir
-        //project.task(type: CleanAutoValueSourcesDir, "cleanAutoValueSourcesDir")
-
-
-        /*Properties properties = System.getProperties();
-         for (Object key : properties.keySet()) {
-         System.out.println(key + ":" + properties.get(key));
-         }
-         String str = "";
-         StringBuffer buf = new StringBuffer();
-         InputStream stream = PackageManagerPlugin.class.getResourceAsStream("/package.structure")
-         try {
-         BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-         if (stream != null) {
-         while ((str = reader.readLine()) != null) {
-         File file = new File(workingDir.replace('\\','/') + "/src/main/groovy/" + str.replace(".","/") );
-         println(file.getAbsolutePath())
-         //String command = "mkdir -p /" + str.replace(".","/")
-         file.mkdirs();
-         //Runtime.getRuntime().exec(command);
-         buf.append(str + "\n" );
-         }
-         }
-         } finally {
-         try {
-         stream.close();
-         } catch (Throwable ignore) {}
-         }
-         println(buf.toString())
-         */
     }
 
     private void addTasks(Project project) {

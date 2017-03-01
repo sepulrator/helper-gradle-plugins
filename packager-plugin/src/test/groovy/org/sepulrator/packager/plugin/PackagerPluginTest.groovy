@@ -21,9 +21,6 @@ class PackagerPluginTest extends Specification {
 
     def 'create specified directories and package index file'() {
         given:
-        //<< "apply plugçin: 'java'"
-        //org.sepulrator.gradle.packager-plugin' version '1.0.2'
-        //apply plugin 'org.sepulrator'
         buildFile << """
             plugins {
                 id 'groovy'
@@ -78,44 +75,6 @@ class PackagerPluginTest extends Specification {
         new File("${testProjectDir.root}/src/main/groovy/package.index").exists()
         new File("${testProjectDir.root}/src/test/groovy/package.index").exists()
 
-
-
     }
-
-
-    /*
-     @Test
-     void testPluginAppliesJavaPlugin() {
-     assertThat(project.plugins.hasPlugin(JavaPlugin.class), is(true))
-     }
-     @Test
-     void testPluginEvaluatesDependencies() {
-     project.evaluate()
-     def lib = project.configurations.compile.dependencies.collect { "$it.group:$it.name:$it.version" as String }.toSet()
-     assertThat(lib, hasItem(project.extensions.dagger.library))
-     }
-     @Test
-     void testPluginEvaluatesCompileOptions() {
-     project.evaluate()
-     def args = project.tasks.compileDagger.options.compilerArgs as List
-     assertThat(args, hasItems('-proc:only', '-s', '-processor', DaggerPluginExtension.PROCESSOR,
-     new File(project.projectDir, DaggerPluginExtension.DEFAULT_DAGGER_SOURCES_DIR).path))
-     }
-     @Test
-     void testDefaultGeneratedSourcesDirIsSet() {
-     assertThat(project.extensions.dagger.daggerSourcesDir as String,
-     equalTo(DaggerPluginExtension.DEFAULT_DAGGER_SOURCES_DIR))
-     }
-     @Test
-     void testDefaultLibraryIsSet() {
-     assertThat(project.extensions.dagger.library as String,
-     equalTo(DaggerPluginExtension.DEFAULT_LIBRARY))
-     }
-     @Test
-     void testDefaultProcessorIsSet() {
-     assertThat(project.extensions.dagger.processorLibrary as String,
-     equalTo(DaggerPluginExtension.DEFAULT_PROCESSOR_LIBRARY))
-     }*/
-
 
 }

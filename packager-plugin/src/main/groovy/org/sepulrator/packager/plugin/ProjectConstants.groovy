@@ -10,4 +10,5 @@ class ProjectConstants {
     static final String PACKAGE_INDENT = "|  "
     static final String PACKAGE_FILE_PREFIX = "+--"
     static final String PACKAGE_DIR_POSTFIX = "/"
+    static final String PACKAGE_FILE_NAME_PREFIX = "+--"
 }
